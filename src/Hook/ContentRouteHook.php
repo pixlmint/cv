@@ -20,10 +20,23 @@ class ContentRouteHook implements PreFindRoute
     {
         /** @var PicoPage[] $pages */
         $pages = $this->pageManager->getPages();
+
+        $technologies = [];
         foreach ($pages as $page) {
             if ($page->id !== '/') {
                 $routes[] = ['route' => $page->id, 'controller' => EntryController::class, 'function' => 'showEntry'];
+                if ($page->meta->getAdditionalValues()->has('technologies')) {
+                    foreach ($page->meta->getAdditionalValues()->get('technologies') as $technology) {
+                        if (!in_array($technology, $technologies)) {
+                            $technologies[] = $technology;
+                        }
+                    }
+                }
             }
+        }
+
+        foreach ($technologies as $technology) {
+            $routes[] = ['route' => '/tech/' . $technology, 'controller' => EntryController::class, 'function' => 'listTechnologyEntries'];
         }
 
         return $routes;

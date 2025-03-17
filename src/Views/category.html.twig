@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ technology }}{% endblock %}
+
+{% block content %}
+<h1>{{ technology }}</h1>
+<a href="/"><- Home</a>
+<div class="card-list">
+    {% for page in pages %}
+    <div class="card">
+        <h2>{{ page.meta.title }}</h2>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

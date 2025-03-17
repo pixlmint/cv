@@ -7,7 +7,7 @@ use Nacho\Models\HttpResponse;
 
 class IndexController extends AbstractController
 {
-    public function index()
+    public function index(): HttpResponse
     {
         return $this->render('home.html.twig');
     }
