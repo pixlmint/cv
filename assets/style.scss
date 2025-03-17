@@ -1,0 +1,104 @@
+:root {
+    --color-primary: #ff014f;
+    --color-heading: white;
+    --color-secondary: white;
+    --color-text: white;
+    --bg-primary: grey;
+}
+
+$bgSecondary: darken(grey, 10%);
+
+html.light {
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--color-text);
+    font-family: sans-serif;
+}
+
+h2 {
+    color: var(--color-heading);
+}
+
+.subtitle {
+    color: var(--color-primary);
+}
+
+.timeline {
+    $timeline-line-gap: 30px;
+    padding-left: $timeline-line-gap;
+    border-left: 5px solid black;
+
+    .timeline-item {
+        list-style: none;
+        background-color: $bgSecondary;
+        border-radius: 5px;
+        padding: 5px;
+
+        .timeline-item-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+                background-color: var(--bg-primary);
+                padding: 5px;
+                border-radius: 5px;
+            }
+        }
+
+        .timeline-item-inner {
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 28px;
+                height: 5px;
+                border-radius: 6px;
+                top: 25px;
+                left: calc($timeline-line-gap - 2 * $timeline-line-gap - 3px);
+                background: black;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 5px solid black;
+                border-radius: 100%;
+                top: 13px;
+                left: -45px;
+                transform: translateX(-7px);
+                background: var(--bg-primary);
+            }
+        }
+
+        &:hover {
+            .timeline-item-inner {
+                &::after {
+                    background: var(--color-primary);
+                }
+            }
+        }
+
+        &:not(:last-of-type) {
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.card-list {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+
+    .card {
+        border-radius: 20px;
+        width: calc((100% / 3) - 3 * 5px);
+        background-color: $bgSecondary;
+        padding: 20px;
+    }
+}
