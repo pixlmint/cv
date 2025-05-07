@@ -1,6 +1,7 @@
 <?php
 
 use App\Hook\ContentRouteHook;
+use App\Hook\RouteNotFoundHook;
 
 return [
     "plugins" => [
@@ -28,6 +29,10 @@ return [
         [
             'anchor' => 'pre_find_route',
             'hook' => ContentRouteHook::class,
+        ],
+        [
+            'anchor' => 'on_route_not_found',
+            'hook' => RouteNotFoundHook::class,
         ],
     ],
     'base' => [

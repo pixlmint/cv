@@ -2,9 +2,10 @@
     "name": "pixlmint/cv",
     "type": "project",
     "require": {
-        "pixlmint/pixl-cms": "^2.4",
         "pixlmint/pixlcms-media-plugin": "^1.7",
-        "twig/twig": "^3.20"
+        "twig/twig": "^3.20",
+        "pixlmint/nacho": "@dev",
+        "pixlmint/pixl-cms": "^2.4"
     },
     "license": "MIT",
     "autoload": {

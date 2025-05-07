@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}CV{% endblock %}</title>
+        <link rel="stylesheet" href="/assets/style.css" />
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        {% block contactSection %}
+
+        {% endblock %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Create toggle button if not present in HTML
+                // if (!document.querySelector('.theme-toggle')) {
+                //     const toggle = document.createElement('button');
+                //     toggle.className = 'theme-toggle';
+                //     toggle.textContent = '🌓 Toggle Light Mode';
+                //     document.body.appendChild(toggle);
+                // }
+
+                // Add event listener
+                document.querySelector('.theme-toggle').addEventListener('click', function() {
+                    document.body.classList.toggle('light-mode');
+                    let textContent = '🌓 Toggle Dark Mode';
+
+                    // Optional: Save preference to localStorage
+                    if (document.body.classList.contains('light-mode')) {
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        localStorage.setItem('theme', 'dark');
+                        textContent = '🌓 Toggle Light Mode';
+                    }
+                    this.textContent = textContent;
+                });
+
+                // Check for saved theme preference
+                if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light-mode');
+                    const toggle = document.querySelector('.theme-toggle')[0];
+                    toggle.textContent = '🌓 Toggle Dark Mode'
+                }
+            });
+        </script>
+        <script src="/assets/app.js" type="module"></script>
+    </body>
+</html>

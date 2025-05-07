@@ -1,0 +1,9 @@
+<a class="card" href="{{ page.id }}">
+    <span class="subtitle"></span>
+    <h3>{{ page.meta.title }}</h3>
+    {% if page.meta.getAdditionalValues().has('description') %}
+    <p class="project-tagline">
+        {{ page.meta.getAdditionalValues().get('description') }}
+    </p>
+    {% endif %}
+</a>

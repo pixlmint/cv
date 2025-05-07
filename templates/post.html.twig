@@ -8,12 +8,12 @@
 <h1>{{ meta.title }}</h1>
 {% if meta.getAdditionalValues().has('tags') %}
     {% for tag in meta.getAdditionalValues().get('tags') %}
-        <span class="subtitle">{{ tag }}</span>
+        <span>{{ tag }}</span>
     {% endfor %}
 {% endif %}
 {% if meta.getAdditionalValues().has('technologies') %}
     {% for technology in meta.getAdditionalValues().get('technologies') %}
-        <span class="subtitle">{{ technology }}</span>
+        <a href="/tech/{{ technology }}" class="subtitle">{{ technology }}</a>
     {% endfor %}
 {% endif %}
 <div class="post-content">
