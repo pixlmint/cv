@@ -224,11 +224,13 @@ h2 {
     }
 
     .typewriter-target {
-        &:after {
-            content: "\00a0";
-            display: inline-block;
-            width: 2px;
-            animation: glowing-marker 1s ease infinite;
+        &.cursor-showing {
+            &:after {
+                content: "\00a0";
+                display: inline-block;
+                width: 2px;
+                animation: glowing-marker 1s ease infinite;
+            }
         }
     }
 }
@@ -708,4 +710,3 @@ body>.subtitle {
     font-weight: lighter;
     src: url("/assets/fonts/Space Grotesk/SpaceGrotesk-Light.ttf");
 }
-

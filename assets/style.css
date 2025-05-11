@@ -176,7 +176,7 @@ h2::after {
 .typewriter .typewriter-options {
   display: none;
 }
-.typewriter .typewriter-target:after {
+.typewriter .typewriter-target.cursor-showing:after {
   content: " ";
   display: inline-block;
   width: 2px;

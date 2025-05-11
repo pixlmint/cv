@@ -11,13 +11,14 @@
         {% endblock %}
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                /*
                 // Create toggle button if not present in HTML
-                // if (!document.querySelector('.theme-toggle')) {
-                //     const toggle = document.createElement('button');
-                //     toggle.className = 'theme-toggle';
-                //     toggle.textContent = '🌓 Toggle Light Mode';
-                //     document.body.appendChild(toggle);
-                // }
+                if (!document.querySelector('.theme-toggle')) {
+                    const toggle = document.createElement('button');
+                    toggle.className = 'theme-toggle';
+                    toggle.textContent = '🌓 Toggle Light Mode';
+                    document.body.appendChild(toggle);
+                }
 
                 // Add event listener
                 document.querySelector('.theme-toggle').addEventListener('click', function() {
@@ -39,7 +40,7 @@
                     document.body.classList.add('light-mode');
                     const toggle = document.querySelector('.theme-toggle')[0];
                     toggle.textContent = '🌓 Toggle Dark Mode'
-                }
+                }*/
             });
         </script>
         <script src="/assets/app.js" type="module"></script>
