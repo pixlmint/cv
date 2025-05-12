@@ -30,13 +30,14 @@ class IndexController extends AbstractController
         $tables = $doc->getElementsByTagName('table');
         $educationAndJobs = $this->tableToArray($tables[0]);
 
-        $lead = $doc->getElementById('lead')->innerHTML;
-
         $lists = $doc->getElementsByTagName('ul');
+        $whatAmIOptionsUl = $lists[0];
+        $whatAmIOptions = $this->listToArray($whatAmIOptionsUl);
+        $skillsUl = $lists[1];
 
         $allSkills = $this->pageAttributeHelper->getAvailableAttributeValues('technologies');
         $skills = [];
-        foreach ($lists[0]->getElementsByTagName('img') as $skill) {
+        foreach ($skillsUl->getElementsByTagName('img') as $skill) {
             /** @var Element $skill */
             $tech = $skill->getAttribute('alt');
 
@@ -57,10 +58,15 @@ class IndexController extends AbstractController
         }, $this->listToArray($lists[1]));
 
 
-        return $this->render('home.html.twig', ['skills' => $skills, 'educationAndJobs' => $educationAndJobs, 'featured' => $featured, 'lead' => $lead]);
+        return $this->render('home.html.twig', [
+            'skills' => $skills,
+            'educationAndJobs' => $educationAndJobs,
+            'featured' => $featured,
+            'whatAmIOptions' => $whatAmIOptions,
+        ]);
     }
 
-    public function listToArray(Element $listElement): array
+    private function listToArray(Element $listElement): array
     {
         $ret = [];
         foreach ($listElement->getElementsByTagName('li') as $listItemElement) {
@@ -76,7 +82,7 @@ class IndexController extends AbstractController
      * @param \DOM\Element $tableElement The table element to process
      * @return array An array of associative arrays where keys are table headings
      */
-    public function tableToArray(Element $tableElement): array
+    private function tableToArray(Element $tableElement): array
     {
         $result = [];
         $headers = [];

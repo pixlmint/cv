@@ -8,8 +8,9 @@
         </span>
         <span class="typewriter-target" id="whatAmITarget">Full Stack Developer</span>
         <ul class="typewriter-options" id="whatAmIOptions">
-            <li>Full Stack Developer</li>
-            <li>Sitcom Afficionado</li>
+            {% for option in whatAmIOptions %}
+                <li>{{ option }}</li>
+            {% endfor %}
         </ul>
     </div>
 </header>

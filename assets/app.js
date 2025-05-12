@@ -19,6 +19,10 @@ function setupTypewriter(options, targetElement) {
     const backspaceSpeed = 40;
     const backspaceDelay = 1000;
 
+    let isPaused = false;
+    let pausedBeforeBackspace = false;
+    let pauseBlocked = false;
+
     let currentText = 1;
 
     const start = function() {
@@ -28,11 +32,18 @@ function setupTypewriter(options, targetElement) {
 
     const loopTyping = function() {
         type(texts[currentText], targetElement).then(function() {
+            if (isPaused && pausedBeforeBackspace) {
+                return;
+            }
             currentText += 1;
             if (currentText === texts.length) {
                 currentText = 0;
             }
-            window.setTimeout(loopTyping, typingDelay);
+            if (!isPaused) {
+                window.setTimeout(loopTyping, typingDelay);
+            } else {
+                pausedBeforeBackspace = false;
+            }
         });
     }
 
@@ -55,7 +66,7 @@ function setupTypewriter(options, targetElement) {
         }
     }
 
-    const type = function(text, targetElement) {
+    const type = async function(text, targetElement) {
         return new Promise(function(resolve) {
             tempTypeSpeed = (Math.random() * typeSpeed) + 50;
 
@@ -72,9 +83,14 @@ function setupTypewriter(options, targetElement) {
                 if (cursorPosition < text.length) {
                     setTimeout(() => typeCharacter(text, targetElement), tempTypeSpeed);
                 } else {
-                    setTimeout(() => {
-                        backspace(resolve);
-                    }, backspaceDelay);
+                    if (isPaused) {
+                        pausedBeforeBackspace = true;
+                        resolve();
+                    } else {
+                        setTimeout(() => {
+                            backspace(resolve);
+                        }, backspaceDelay);
+                    }
                 }
             }
 
@@ -83,17 +99,39 @@ function setupTypewriter(options, targetElement) {
         });
     };
 
-    const showCursor = function () {
+    const showCursor = function() {
         targetElement.classList.add('cursor-showing');
     }
 
-    const hideCursor = function () {
+    const hideCursor = function() {
         targetElement.classList.remove('cursor-showing');
     }
+
+    const togglePause = function() {
+        if (!pauseBlocked) {
+            console.log("pause state toggled");
+            pauseBlocked = true;
+            if (isPaused) {
+                isPaused = false;
+                if (pausedBeforeBackspace) {
+                    initialErase().then(function() {
+                        loopTyping();
+                    });
+                } else {
+                    loopTyping();
+                }
+            } else {
+                isPaused = true;
+            }
+        }
+    }
+
+    targetElement.parentNode.addEventListener('click', togglePause);
 
     return {
         type: type,
         start: start,
+        togglePause: togglePause,
     };
 }
 
