@@ -34,6 +34,7 @@ class IndexController extends AbstractController
         $whatAmIOptionsUl = $lists[0];
         $whatAmIOptions = $this->listToArray($whatAmIOptionsUl);
         $skillsUl = $lists[1];
+        $leaderImage = $doc->getElementsByTagName('img')[0]->getAttribute('src');
 
         $allSkills = $this->pageAttributeHelper->getAvailableAttributeValues('technologies');
         $skills = [];
@@ -63,6 +64,7 @@ class IndexController extends AbstractController
             'educationAndJobs' => $educationAndJobs,
             'featured' => $featured,
             'whatAmIOptions' => $whatAmIOptions,
+            'leaderImage' => $leaderImage,
         ]);
     }
 

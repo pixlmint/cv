@@ -190,8 +190,10 @@ header {
   margin: 3rem 0;
   padding: 1.5rem 0;
   position: relative;
-  max-width: 800px;
   min-height: 400px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   animation: fadeInUp 0.8s forwards;
   animation-delay: 0.2s;
   opacity: 0;
@@ -206,6 +208,12 @@ header::after {
   background-color: var(--accent);
   box-shadow: 0 0 5px var(--accent-glow);
   transition: background-color var(--animation-speed) var(--animation-function), box-shadow var(--animation-speed) var(--animation-function);
+}
+header .header-image img {
+  width: 500px;
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 body > h2:first-of-type + ul {

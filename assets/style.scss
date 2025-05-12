@@ -243,8 +243,10 @@ header {
     margin: 3rem 0;
     padding: 1.5rem 0;
     position: relative;
-    max-width: 800px;
     min-height: 400px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
     animation: fadeInUp 0.8s forwards;
     animation-delay: 0.2s;
@@ -261,6 +263,12 @@ header {
         @include glow(var(--accent-glow), 5px);
         transition: background-color var(--animation-speed) var(--animation-function),
             box-shadow var(--animation-speed) var(--animation-function);
+    }
+
+    .header-image img {
+        width: 500px;
+        border-radius: 50px;
+        @include glassmorphism();
     }
 }
 
