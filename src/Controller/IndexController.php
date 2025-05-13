@@ -34,6 +34,7 @@ class IndexController extends AbstractController
         $whatAmIOptionsUl = $lists[0];
         $whatAmIOptions = $this->listToArray($whatAmIOptionsUl);
         $skillsUl = $lists[1];
+        $featuredUl = $lists[2];
         $leaderImage = $doc->getElementsByTagName('img')[0]->getAttribute('src');
 
         $allSkills = $this->pageAttributeHelper->getAvailableAttributeValues('technologies');
@@ -56,7 +57,7 @@ class IndexController extends AbstractController
 
         $featured = array_map(function($id) {
             return $this->pageManager->getPage($id);
-        }, $this->listToArray($lists[1]));
+        }, $this->listToArray($featuredUl));
 
 
         return $this->render('home.html.twig', [
