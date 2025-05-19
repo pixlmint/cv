@@ -1,0 +1,33 @@
+// Base Variables - Dark mode is default for this theme
+:root {
+    // Dark Theme Colors (Default)
+    --bg-primary: #0A1128;
+    --bg-secondary: #160F30;
+    --text-primary: #E5E5E5;
+    --text-secondary: #B8B8B8;
+    --accent: #00E8FC;
+    --accent-glow: rgba(0, 232, 252, 0.4);
+    --card-bg: rgba(30, 30, 50, 0.7);
+    --timeline-color: #00E8FC;
+
+    // Animation settings
+    --animation-speed: 0.3s;
+    --animation-function: ease;
+}
+
+// Light theme variables
+.light-mode {
+    --bg-primary: #f0f6ff;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #4a4a6a;
+    --accent: #0066FF;
+    --accent-glow: rgba(0, 102, 255, 0.3);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --timeline-color: #0066FF;
+}
+
+// SCSS Mixins & Variables
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
